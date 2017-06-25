@@ -10,5 +10,5 @@ Dotenv.load unless env == :production
 
 $stdout.sync = true
 
-require 'hub'
+require 'promulgate'
 run Promulgate::Server
