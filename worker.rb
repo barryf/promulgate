@@ -8,4 +8,6 @@ Bundler.require(:default, env)
 
 Dotenv.load unless env == :production
 
+$stdout.sync = true
+
 require 'promulgate'
