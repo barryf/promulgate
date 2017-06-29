@@ -37,7 +37,7 @@ module Promulgate
       urls = get_urls
       urls.each do |url|
         puts "Queueing publish of '#{url}'."
-        Publish.perform(url)
+        Publish.perform_async(url)
       end
     end
 
@@ -51,13 +51,15 @@ module Promulgate
       secret = if params.key?('hub.secret') && !params['hub.secret'].empty?
         params['hub.secret']
       end
-      Subscribe.perform(url, callback, secret, lease_seconds)
+      puts "Queueing subscription of '#{url}' by '#{callback}'."
+      Subscribe.perform_async(url, callback, secret, lease_seconds)
     end
 
     def unsubscribe
       url = get_url
       callback = get_callback
-      Unsubscribe.perform(url, callback)
+      puts "Queueing Unsubscription of '#{url}' by '#{callback}'."
+      Unsubscribe.perform_async(url, callback)
     end
 
     def get_urls

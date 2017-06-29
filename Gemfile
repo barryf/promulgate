@@ -7,6 +7,8 @@ gem 'sinatra'
 gem 'rack-ssl'
 gem 'httparty'
 gem 'redis'
+gem 'foreman'
+gem 'sidekiq'
 
 group :development do
   gem 'shotgun'

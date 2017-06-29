@@ -1,7 +1,6 @@
 module Promulgate
-  module Notify
-    module_function
-    #include Sidekiq::Worker
+  class Notify
+    include Sidekiq::Worker
 
     def perform(subscriber_url, topic_url)
       topic = RedisHelpers.get_topic(topic_url)

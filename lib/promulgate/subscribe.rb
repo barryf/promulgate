@@ -1,7 +1,6 @@
 module Promulgate
-  module Subscribe
-    module_function
-    #include Sidekiq::Worker
+  class Subscribe
+    include Sidekiq::Worker
 
     DEFAULT_LEASE_SECONDS = 604_800 # 7 days
 

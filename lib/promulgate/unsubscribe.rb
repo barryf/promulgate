@@ -1,7 +1,6 @@
 module Promulgate
-  module Unsubscribe
-    module_function
-    #include Sidekiq::Worker
+  class Unsubscribe
+    include Sidekiq::Worker
 
     def perform(url, callback_url)
       challenge = SecureRandom.hex(100)

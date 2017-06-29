@@ -1,7 +1,6 @@
 module Promulgate
-  module Publish
-    module_function
-    #include Sidekiq::Worker
+  class Publish
+    include Sidekiq::Worker
 
     def perform(topic_url)
       response = HTTParty.get(topic_url)
@@ -18,7 +17,7 @@ module Promulgate
         unless subscriber.nil?
           puts "Queueing notification of subscriber '#{subscriber_url}' " +
             "for topic '#{topic_url}'."
-          Notify.perform(subscriber_url, topic_url)
+          Notify.perform_async(subscriber_url, topic_url)
         else
           RedisHelpers.unsubscribe(topic_url, subscriber_url)
           puts "Subscriber '#{subscriber_url}' was not found so has been " +
