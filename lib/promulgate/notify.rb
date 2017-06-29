@@ -24,8 +24,10 @@ module Promulgate
 
       response = HTTParty.post(subscriber_url, body: topic['body'],
         headers: headers)
-      puts "Notified subscriber '#{subscriber_url}' for topic " +
-        "'#{topic_url}' and received status #{response.code}."
+      message = "Attempted to notify subscriber '#{subscriber_url}' for " +
+        "topic '#{topic_url}' and received status #{response.code}."
+      puts message
+      raise message unless response.code == 200
     end
 
   end
