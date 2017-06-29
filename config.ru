@@ -11,4 +11,9 @@ Dotenv.load unless env == :production
 $stdout.sync = true
 
 require 'promulgate'
-run Promulgate::Server
+require 'sidekiq/web'
+
+run Rack::URLMap.new(
+  '/' => Promulgate::Server,
+  '/sidekiq' => Sidekiq::Web
+)
