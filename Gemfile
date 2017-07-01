@@ -14,3 +14,7 @@ group :development do
   gem 'shotgun'
   gem 'dotenv'
 end
+
+group :production do
+  gem 'sentry-raven'
+end
