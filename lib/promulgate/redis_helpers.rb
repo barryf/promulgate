@@ -14,7 +14,7 @@ module Promulgate
     def set_topic(url, content_type, body)
       json = {
         'content_type' => content_type,
-        'body' => body.encode('utf-8')
+        'body' => body
       }.to_json
       REDIS.set(url, json)
       REDIS.expire(url, TOPIC_EXPIRES)

@@ -9,7 +9,7 @@ module Promulgate
         return
       end
       RedisHelpers.set_topic(topic_url, response.headers['Content-Type'],
-        response.body)
+        response.body.force_encoding('UTF-8'))
 
       subscriptions = RedisHelpers.find_subscriptions(topic_url)
       subscriptions.each do |subscriber_url|
