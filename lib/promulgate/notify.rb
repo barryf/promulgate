@@ -27,7 +27,7 @@ module Promulgate
       message = "Attempted to notify subscriber '#{subscriber_url}' for " +
         "topic '#{topic_url}' and received status #{response.code}."
       puts message
-      raise message unless response.code == 200
+      raise message unless [200, 204].include?(response.code)
     end
 
   end
