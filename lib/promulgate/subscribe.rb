@@ -16,7 +16,7 @@ module Promulgate
       }
       begin
         response = HTTParty.get(subscriber_url, query: query)
-      rescue Error => e
+      rescue => e
         puts "Subscription failed when fetching '#{subscriber_url}' (#{e.message})."
       end
       case response.code
