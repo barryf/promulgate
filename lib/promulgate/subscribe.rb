@@ -14,7 +14,11 @@ module Promulgate
         'hub.challenge' => challenge,
         'hub.lease_seconds' => lease_seconds
       }
-      response = HTTParty.get(subscriber_url, query: query)
+      begin
+        response = HTTParty.get(subscriber_url, query: query)
+      rescue Error => e
+        puts "Subscription failed when fetching '#{subscriber_url}' (#{e.message})."
+      end
       case response.code
       when 200
         if response.body == challenge
