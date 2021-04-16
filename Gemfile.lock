@@ -13,7 +13,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mustermann (1.0.2)
-    puma (3.12.4)
+    puma (3.12.6)
     rack (2.2.2)
     rack-protection (2.0.3)
       rack
